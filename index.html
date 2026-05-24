@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full w-full overflow-hidden select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sino si MJ Lopez? - About MJ Lopez (eBook)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030303;
+            color: #F3F4F6;
+        }
+
+        :root {
+            --reader-font-size: 14px;
+        }
+
+        .dynamic-text {
+            font-size: var(--reader-font-size);
+            line-height: calc(var(--reader-font-size) + 8px);
+        }
+
+        .dynamic-subtext {
+            font-size: calc(var(--reader-font-size) - 2px);
+            line-height: calc(var(--reader-font-size) + 5px);
+        }
+
+        .glass-panel {
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.12);
+        }
+
+        .glass-card {
+            background: rgba(16, 185, 129, 0.02);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(16, 185, 129, 0.08);
+        }
+
+        .glow-emerald-top {
+            background: radial-gradient(circle at 50% -10%, rgba(16, 185, 129, 0.15) 0%, transparent 55%);
+        }
+        .glow-emerald-bottom {
+            background: radial-gradient(circle at 50% 110%, rgba(16, 185, 129, 0.08) 0%, transparent 55%);
+        }
+
+        .watermark-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0.035; 
+            user-select: none;
+        }
+        .watermark-item {
+            position: absolute;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #10B981;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            transform: rotate(-28deg);
+            white-space: nowrap;
+        }
+
+        .capsule-checkbox {
+            width: 16px;
+            height: 28px;
+            border-radius: 9999px;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .capsule-checkbox.checked {
+            background-color: #10B981;
+            border-color: #10B981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="h-[92dvh] w-full flex items-center justify-center overflow-hidden bg-[#030303] p-1">
+
+    <div class="fixed inset-0 pointer-events-none glow-emerald-top z-0"></div>
+    <div class="fixed inset-0 pointer-events-none glow-emerald-bottom z-0"></div>
+
+    <div class="relative w-full max-w-md h-full md:h-[840px] md:rounded-[40px] md:border-8 md:border-neutral-900 bg-[#050505] shadow-2xl overflow-hidden flex flex-col z-10">
+        
+        <div class="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-5 bg-neutral-900 rounded-b-xl z-50"></div>
+
+        <header class="glass-panel w-full px-4 pt-4 pb-2.5 flex items-center justify-between border-b border-emerald-950/20 z-40 flex-shrink-0">
+            <button onclick="toggleSidebar()" class="p-2 hover:bg-emerald-950/40 rounded-xl transition-colors text-emerald-400">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+            <div class="text-center">
+                <p class="text-[9px] text-emerald-500 font-extrabold tracking-widest uppercase">ABOUT MJ LOPEZ</p>
+                <h1 class="text-xs text-neutral-300 font-bold truncate max-w-[150px]" id="header-page-title">Sino si MJ Lopez?</h1>
+            </div>
+            <div class="flex items-center gap-1">
+                <button onclick="adjustFontSize(-1)" class="p-1.5 hover:bg-emerald-950/40 rounded-lg text-neutral-400">
+                    <span class="text-xs font-bold">A-</span>
+                </button>
+                <button onclick="adjustFontSize(1)" class="p-1.5 hover:bg-emerald-950/40 rounded-lg text-emerald-400">
+                    <span class="text-xs font-bold">A+</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="w-full h-1 bg-neutral-900 z-40 relative flex-shrink-0">
+            <div id="reading-progress" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all duration-300" style="width: 14.28%;"></div>
+        </div>
+
+        <main id="pages-container" class="flex-1 overflow-y-auto no-scrollbar relative p-5 space-y-10 pb-28 z-20">
+
+            <section id="page-cover" class="min-h-full flex flex-col justify-between relative py-2">
+                <div class="watermark-container">
+                    <span class="watermark-item" style="top: 15%; left: -5%;">Design by Luay</span>
+                    <span class="watermark-item" style="top: 45%; left: 40%;">Design by Luay</span>
+                    <span class="watermark-item" style="top: 80%; left: 10%;">Design by Luay</span>
+                </div>
+
+                <div class="text-center pt-2 z-10 flex-shrink-0">
+                    <div class="inline-block px-3 py-1 bg-emerald-950/60 border border-emerald-500/20 rounded-full text-[10px] font-bold tracking-widest text-emerald-400 mb-2 animate-pulse">
+                        EBOOK PRESENTATION
+                    </div>
+                    <h1 class="text-2xl font-extrabold tracking-tight text-white leading-tight">
+                        Sino si <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-100">MJ Lopez?</span>
+                    </h1>
+                    <p class="text-[11px] text-emerald-500 font-semibold tracking-widest uppercase mt-1">Formal Profile & Teachings</p>
+                </div>
+
+                <div class="relative w-36 h-36 mx-auto my-3 z-10 flex-shrink-0">
+                    <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-emerald-500 to-emerald-300 blur-md opacity-30"></div>
+                    <div class="absolute inset-0 rounded-2xl border border-emerald-400/40 p-1 bg-[#090909] overflow-hidden flex items-center justify-center">
+                        <img 
+                            src="https://raw.githubusercontent.com/karlluay02-coder/PistonPuncher/refs/heads/main/FB_IMG_1779468693436.jpg" 
+                            alt="MJ Lopez Profile Image" 
+                            class="w-full h-full object-cover rounded-xl"
+                            onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=256';" 
+                        />
+                    </div>
+                </div>
+
+                <div class="text-center space-y-3 z-10 flex-shrink-0">
+                    <p class="dynamic-text text-neutral-400 max-w-xs mx-auto italic leading-relaxed">
+                        "Hindi ka pinanganak para maging mahirap habambuhay. May paraan para mabago ang iyong kapalaran."
+                    </p>
+                    <div class="flex justify-center items-center gap-2 text-emerald-400 text-[10px] font-bold tracking-widest">
+                        <span>MAG-SWIPE O I-CLICK ANG NEXT</span>
+                        <i data-lucide="chevron-down" class="w-3 h-3 animate-bounce"></i>
+                    </div>
+                </div>
+
+                <div class="text-center pt-4 border-t border-emerald-950/30 z-10 flex-shrink-0">
+                    <p class="text-[9px] text-neutral-500 uppercase tracking-widest">Designed by</p>
+                    <p class="text-xs text-emerald-400 font-bold tracking-wider uppercase">Luay</p>
+                </div>
+            </section>
+
+            <section id="page-intro" class="pt-2 min-h-full relative hidden">
+                <div class="watermark-container">
+                    <span class="watermark-item" style="top: 25%; left: 25%;">Design by Luay</span>
+                </div>
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="p-1.5 bg-emerald-950/60 rounded-lg border border-emerald-500/20">
+                        <i data-lucide="user-check" class="w-4 h-4 text-emerald-400"></i>
+                    </div>
+                    <span class="text-xs text-emerald-400 font-semibold tracking-wider uppercase">Pagkilala kay MJ</span>
+                </div>
+                <h2 class="text-xl font-bold text-white tracking-tight mb-3">Sino si MJ Lopez?</h2>
+                <div class="flex items-center gap-3 p-3 bg-emerald-950/10 border border-emerald-500/10 rounded-xl mb-3">
+                    <img src="https://raw.githubusercontent.com/karlluay02-coder/PistonPuncher/refs/heads/main/FB_IMG_1779468693436.jpg" class="w-12 h-12 rounded-lg object-cover" alt="MJ"/>
+                    <div>
+                        <h4 class="text-xs font-bold text-white">MJ Lopez</h4>
+                        <p class="text-[10px] text-neutral-400">Business Coach & Entrepreneur</p>
+                    </div>
+                </div>
+                <div class="space-y-3 text-neutral-300 dynamic-text">
+                    <p>Si <strong>MJ Lopez</strong> ay isa sa mga nangungunang business mentor at tagapagturo ng tamang financial mindset sa Pilipinas ngayon. Gamit ang kanyang makabagong sistema, binibigyang-lakas niya ang libo-libong Pilipino.</p>
+                    <p>Si MJ ay may aktwal na mga negosyo sa real estate, distribusyon, at malalaking pamumuhunan. Ang bawat aral niya ay mula sa personal na karanasan.</p>
+                </div>
+            </section>
+
+            <section id="page-summary" class="pt-2 min-h-full relative hidden">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="p-1.5 bg-emerald-950/60 rounded-lg border border-emerald-500/20">
+                        <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i>
+                    </div>
+                    <span class="text-xs text-emerald-400 font-semibold tracking-wider uppercase">Executive Summary</span>
+                </div>
+                <h2 class="text-xl font-bold text-white tracking-tight mb-3">Ang Buod ng Mensahe</h2>
+                <div class="space-y-3 text-neutral-300 dynamic-text">
+                    <p>Ang mithiin ni MJ Lopez ay sirain ang <strong>"Poverty Mindset"</strong> o ang kaisipang umaasa lamang sa tulong ng iba. Naniniwala siya sa pagbuo ng sariling kakayahan na lumikha ng wealth.</p>
+                    <div class="glass-card rounded-xl p-3 border border-emerald-500/10 mt-2">
+                        <p class="text-xs text-emerald-400 font-bold mb-1 uppercase">Pangunahing Layunin</p>
+                        <p class="dynamic-subtext text-neutral-300">Gabayan ang masa patungo sa tunay na Financial Literacy sa pamamagitan ng simpleng paliwanag at aktwal na solusyon.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-lessons-1" class="pt-2 min-h-full relative hidden">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="p-1.5 bg-emerald-950/60 rounded-lg border border-emerald-500/20">
+                        <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i>
+                    </div>
+                    <span class="text-xs text-emerald-400 font-semibold tracking-wider uppercase">Mga Aral (1 - 5)</span>
+                </div>
+                <h2 class="text-xl font-bold text-white tracking-tight mb-3">Nangungunang 10 Aral</h2>
+                <div class="space-y-2.5">
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">01</span>Mindset Bago Pera</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Walang silbi ang kapital kung ang pag-iisip mo ay hindi handa sa pamamahala ng yaman.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">02</span>Kontrolin ang Cash Flow</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Ang yaman ay nasusukat sa tuloy-tuloy na daloy ng pera na pumapasok nang regular.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">03</span>Invest sa Kaalaman</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Bago maglagay ng pera, siguraduhing pinag-aralan mo muna ito nang lubos.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">04</span>Tamang Kasama (Network)</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Ang iyong network ang magtatakda ng antas ng iyong magiging net worth.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">05</span>Iwasan ang Maagang Luho</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Delayed gratification. Tiisin muna ang luho para sa masaganang bukas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-lessons-2" class="pt-2 min-h-full relative hidden">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="p-1.5 bg-emerald-950/60 rounded-lg border border-emerald-500/20">
+                        <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i>
+                    </div>
+                    <span class="text-xs text-emerald-400 font-semibold tracking-wider uppercase">Mga Aral (6 - 10)</span>
+                </div>
+                <h2 class="text-xl font-bold text-white tracking-tight mb-3">Mga Aral (Karugtong)</h2>
+                <div class="space-y-2.5">
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">06</span>Mabilisang Execution</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Wala sa ganda ng plano ang tagumpay, kundi sa bilis ng iyong aksyon.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">07</span>Bumangon sa Kabiguan</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Ang pagkakamali ay bahagi ng karunungan. Huwag sumuko agad.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">08</span>Iba't Ibang Kita</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Magkaroon ng multiple streams of passive and active income.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">09</span>Gamitin ang Leverage</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Gamitin ang sistema at teknolohiya para lumawak ang iyong negosyo.</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-2.5 border border-emerald-500/10">
+                        <h3 class="text-xs font-bold text-white"><span class="text-emerald-400 mr-1">10</span>Maging Mapagbigay</h3>
+                        <p class="dynamic-subtext text-neutral-400 mt-0.5">Ang tunay na pagyaman ay ang kakayahang maging daluyan ng pagpapala.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-closing" class="pt-2 min-h-full relative hidden">
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="p-1.5 bg-emerald-950/60 rounded-lg border border-emerald-500/20">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                    </div>
+                    <span class="text-xs text-emerald-400 font-semibold tracking-wider uppercase">Aksyon</span>
+                </div>
+                <h2 class="text-xl font-bold text-white tracking-tight mb-2">Simulan Mo Na Ngayon</h2>
+                <div class="space-y-2 mb-6">
+                    <div onclick="toggleCheck(this)" class="flex items-center gap-3 p-3 bg-emerald-950/5 border border-emerald-500/10 rounded-xl cursor-pointer select-none">
+                        <div class="capsule-checkbox"><i data-lucide="check" class="w-3 h-3 text-neutral-950 hidden"></i></div>
+                        <span class="dynamic-subtext text-neutral-300">Suriin at ilista ang mga bad debts o utang.</span>
+                    </div>
+                    <div onclick="toggleCheck(this)" class="flex items-center gap-3 p-3 bg-emerald-950/5 border border-emerald-500/10 rounded-xl cursor-pointer select-none">
+                        <div class="capsule-checkbox"><i data-lucide="check" class="w-3 h-3 text-neutral-950 hidden"></i></div>
+                        <span class="dynamic-subtext text-neutral-300">Maglaan ng 30-minuto araw-araw sa pag-aaral.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-links" class="pt-2 min-h-full flex flex-col justify-between relative hidden">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="p-1.5 bg-emerald-950/60 rounded-lg border border-emerald-500/20">
+                            <i data-lucide="share-2" class="w-4 h-4 text-emerald-400"></i>
+                        </div>
+                        <span class="text-xs text-emerald-400 font-semib
